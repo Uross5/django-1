@@ -1,10 +1,56 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render
+
+products = {
+    "Macbook Air 2025": {
+        "price": 2000,
+        "description": "This is Macbook Air 2025"
+    },
+    "Macbook Pro 2025": {
+        "price": 2800,
+        "description": "This is Macbook Pro 2025"
+    },
+    "iPhone 16 Pro": {
+        "price": 1500,
+        "description": "This is iPhone 16 Pro"
+    },
+    "iPad Pro 2025": {
+        "price": 1800,
+        "description": "This is iPad Pro 2025"
+    },
+    "Apple Watch Ultra 2": {
+        "price": 900,
+        "description": "This is Apple Watch Ultra 2"
+    }
+}
+
 
 def home(request):
-    return render(request,"index.html")
+    context = {
+        "products": products,
+    }
+
+    return render(request, "index.html", context, status=200)
+
 
 def about(request):
-    return HttpResponse("This is the about page")
+    return HttpResponse("Not possible to show the page", status=404)
+
+
+def product(request, name):
+    product = products.get(name)
+
+    if not product:
+        return HttpResponse("Product not found", status=404)
+
+    context = {
+        "product": product,
+    }
+
+    return render(request, "product.html", context)
+
+
+def user(request, user_id):
+    return HttpResponse(f"This is user {user_id}", status=200)
 
 # Create your views here.

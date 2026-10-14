@@ -1,1 +1,11 @@
-<p>"Hello World :)"</p>
+<div>
+
+    {% for name, product in products.items %}
+        <div>
+            <p>{{ name }}</p>
+            <p>{{ product.price }}$</p>
+        </div>
+
+    {% endfor %}
+
+</div>
