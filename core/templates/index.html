@@ -1,8 +1,17 @@
 <div>
 
-    {% for name, product in products.items %}
+<form method="POST" action="/logout/">
+
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+
+
+</form>
+
+    {% for product in products %}
         <div>
-            <p>{{ name }}</p>
+            <p>{{ product.title }}</p>
+            <small>{{ product.description }}</small>
             <p>{{ product.price }}$</p>
         </div>
 

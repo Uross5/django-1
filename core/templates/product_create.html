@@ -1,0 +1,11 @@
+<form method="POST" action="/admin/product/save">
+
+    {% csrf_token %}
+
+    <input name="title" type="text" placeholder="Enter the name of product"/>
+    <input name="price" type="text" placeholder="Enter the price of product"/>
+    <textarea name="description" placeholder="Enter description of the product"></textarea>
+    <button>Make a product</button>
+
+
+</form>

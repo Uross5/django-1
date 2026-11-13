@@ -16,13 +16,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import home,about,product,user
+from core.views.general import home
+from core.views.general import about
 
+from core.views.user import user
+
+from core.views.product import product
+from core.views.product import create_product
+from core.views.product import save_product
+
+#auth_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('',home),
     path('about',about),
     path('product/<str:name>',product),
     #user/id
-    path('user/<int:user_id>',user)
+    path('user/<int:user_id>',user),
+
+    # GET method
+    path('admin/product/create',create_product),
+
+    # POST method
+    path('admin/product/save',save_product),
+
+    path('login/',auth_views.LoginView.as_view(template_name="auth/login.html",next_page='/')),
+    path('logout/',auth_views.LogoutView.as_view(next_page='/'))
 ]
